@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Testando Chart.js</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+        <link rel="stylesheet" href="./css/chart.css">
+    </head>
+    <body>
+
+        <!-- Menu vertical -->
+        <div class="w3-sidebar w3-bar-block" style="width:15%; background-color: #313348; color: aliceblue;">
+            <h3 class="w3-bar-item">Menu</h3>
+            <a href="#" class="w3-bar-item hover-menu">Link 1</a>
+            <a href="#" class="w3-bar-item hover-menu">Link 2</a>
+            <a href="#" class="w3-bar-item hover-menu">Link 3</a>
+        </div>
+
+        <!-- Conteudo da pagina -->
+
+        <!-- header -->
+        <div class="w3-container" style="background-color: rgba(0, 255, 255, 0.76); color: aliceblue;  margin-left:15%;">
+            <h1>Testando Chart.js</h1>
+        </div>
+        <!-- fim header -->
+
+        <!-- inicio da parte de gráficos -->
+        <div class="container">
+
+            <!-- grafico principal da tela (gráfico de linha) -->
+            <div class="div_grafico_principal">
+                <h3 style=" color: aliceblue;">Sensores</h3>
+                <canvas id="buyers" style="width: 80%; height: 400px;"></canvas>
+            </div>
+            <!-- fim grafico principal da tela -->
+
+            <!-- div responsavel por deixar seu conteudo lado a lado -->
+            <div class="flex">
+
+                <!-- grafico de pizza -->
+                <div class="div_grafico">
+                    <h3 style=" color: aliceblue;">Avaliações</h3>
+                    <canvas id="countries" width="600" height="400"></canvas>
+                </div>
+
+                <!-- grafico de coluna -->
+                <div class="div_grafico">
+                    <h3 style=" color: aliceblue;">Vendas</h3>
+                    <canvas id="income" width="600" height="400"></canvas>
+                </div>
+
+            </div>
+        </div>
+        <!-- fim da parte de gráficos -->
+
+    </body>
+</html>
+
+<script>
+    // dados gráfico de linha (1° gráfico)
+    var buyerData = {
+        // descrição dos dados
+        labels : ["23:55","23:56","23:57","23:58","23:59","00:00"],
+        datasets : [
+        {
+            // cor do preencimento do gráfico
+            fillColor : "aquamarine",
+            // cor do contorno (linha) do gráfico
+            strokeColor : "aquamarine",
+            // cor dos pontos dos graficos
+            pointColor : "#fff",
+            // cor do contorno dos pontos
+            pointStrokeColor : "#fff",
+            // dados
+            data : [-86,-75,-80,-85,-86,-70]
+        }
+    ]
+    }
+
+    var buyers = document.getElementById('buyers').getContext('2d');
+    new Chart(buyers).Line(buyerData);
+
+    // fim dados gráfico de linha (1° gráfico)
+
+    // dados do grafico de pizza (2° gráfico)
+    var pieData = [
+        {
+            // valor do preenchimento do "pedaço"
+            value: 20,
+            // cor do preenchimento do "pedaço"
+            color:"rgb(255, 127, 227)"
+        },
+        {
+            // valor do preenchimento do "pedaço"
+            value : 40,
+            // cor do preenchimento do "pedaço"
+            color : "rgb(127, 255, 185)"
+        },
+        {
+            // valor do preenchimento do "pedaço"
+            value : 10,
+            // cor do preenchimento do "pedaço"
+            color : "rgb(255, 204, 127)"
+        },
+        {
+            // valor do preenchimento do "pedaço"
+            value : 30,
+            // cor do preenchimento do "pedaço"
+            color : "rgb(255, 127, 127)"
+        }
+    ];
+    // opções gráfico de pizza
+    var pieOptions = {
+        // borda no gráfico
+         segmentShowStroke : false,
+         animateScale : true
+    }
+
+    var countries= document.getElementById("countries").getContext("2d");
+    new Chart(countries).Pie(pieData, pieOptions);
+
+    // fim dados do grafico de pizza (2° gráfico)
+
+
+    var barData = {
+        labels : ["Janeiro","Fevereiro","Março","Abril","Maio"],
+        datasets : [
+            {
+                fillColor : "rgb(127, 129, 255)",
+                strokeColor : "rgb(255, 255, 255)",
+                data : [479,324,569,702,600]
+            },
+            {
+                fillColor : "rgb(242, 255, 127)",
+                strokeColor : "rgba(255,255,255)",
+                data : [504,605,400,345,320]
+            }
+        ]
+    }
+   
+    var income = document.getElementById("income").getContext("2d");
+
+    new Chart(income).Bar(barData);
+</script>
